@@ -1,0 +1,1 @@
+docker build -t antirek/asterisk15-lua-1 --rm=true .
