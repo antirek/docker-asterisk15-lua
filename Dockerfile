@@ -23,7 +23,7 @@ RUN apt-get check && \
         tcsh scons libpcre++-dev libboost-dev libboost-all-dev libreadline-dev \
         libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev \
         libboost-date-time-dev gcc g++ git lua5.1-dev make libmongo-client-dev \
-        dh-autoreconf lame sox libzmq3-dev libzmqpp-dev libtiff-tools && \
+        dh-autoreconf lame sox libzmq3-dev libzmqpp-dev libtiff-tools perl5 && \
     apt-get clean
 
 
@@ -33,17 +33,9 @@ RUN curl -sf \
         -o /tmp/asterisk.tar.gz \
         -L http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-15-current.tar.gz && \
     mkdir /tmp/asterisk && \
-    tar -xzf /tmp/asterisk.tar.gz -C /tmp/asterisk --strip-components=1
-
-RUN apt-get install -y uuid-dev
-RUN apt-get install -y perl5
-
-RUN export PATH=/usr/bin:/usr/sbin:/bin:/sbin && \
-##    unset PERLLIB && \ 
-##   unset PERL5LIB && \
+    tar -xzf /tmp/asterisk.tar.gz -C /tmp/asterisk --strip-components=1 && \
     cd /tmp/asterisk && \
     contrib/scripts/install_prereq install
-
 
 RUN cd /tmp/asterisk && \
     ./configure
@@ -56,7 +48,6 @@ RUN cd /tmp/asterisk && \
         menuselect.makeopts && \
     make && make install && \
     apt-get clean
-
 
 ## Lua
 
