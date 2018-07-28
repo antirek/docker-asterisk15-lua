@@ -8,6 +8,17 @@
 - dbs driver for lua
 - g729 support
 
+## Usage
+
+use in Dockerfile
+
+`````
+FROM antirek/asterisk15-lua:18.07.1
+
+...
+`````
+also see https://github.com/antirek/docker-asterisk15-lua-pjsip-sample
+
 ## 18.07.1
 
 - asterisk 15.5.0
