@@ -46,6 +46,7 @@ RUN cd /tmp/asterisk && \
         --disable BUILD_NATIVE \
         --enable res_endpoint_stats \
         --enable res_chan_stats \
+        --enable res_pjsip_registrar_expire \
         --enable chan_pjsip \
         menuselect.makeopts && \
     make && make install && \
@@ -153,3 +154,4 @@ RUN mkdir /usr/codecs && \
     curl -O http://asterisk.hosting.lv/bin/codec_g729-ast150-gcc4-glibc2.2-x86_64-opteron-sse3.so && \
     curl -O http://asterisk.hosting.lv/bin/codec_g729-ast150-gcc4-glibc2.2-x86_64-opteron.so && \
     curl -O http://asterisk.hosting.lv/bin/codec_g729-ast150-gcc4-glibc2.2-x86_64-pentium4.so
+

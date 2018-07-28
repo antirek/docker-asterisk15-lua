@@ -16,6 +16,9 @@ use in Dockerfile
 FROM antirek/asterisk15-lua:18.07.1
 
 ...
+
+CMD asterisk && tail -f /var/log/asterisk/messages
+
 `````
 also see https://github.com/antirek/docker-asterisk15-lua-pjsip-sample
 
