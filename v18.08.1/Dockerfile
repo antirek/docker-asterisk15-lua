@@ -37,6 +37,10 @@ RUN curl -sf \
     cd /tmp/asterisk && \
     contrib/scripts/install_prereq install
 
+RUN apt-get remove -y liblua5.2-dev
+
+RUN apt-get install -y liblua5.1-dev
+
 RUN cd /tmp/asterisk && \
     ./configure
 
