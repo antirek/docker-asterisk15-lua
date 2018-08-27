@@ -22,7 +22,7 @@ RUN apt-get check && \
         build-essential zip unzip libreadline-dev curl libncurses-dev mc aptitude \
         tcsh scons libpcre++-dev libboost-dev libboost-all-dev libreadline-dev \
         libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev \
-        libboost-date-time-dev gcc g++ git lua5.1-dev make libmongo-client-dev \
+        libboost-date-time-dev gcc g++ git make libmongo-client-dev \
         dh-autoreconf lame sox libzmq3-dev libzmqpp-dev libtiff-tools perl5 && \
     apt-get clean
 
@@ -36,10 +36,6 @@ RUN curl -sf \
     tar -xzf /tmp/asterisk.tar.gz -C /tmp/asterisk --strip-components=1 && \
     cd /tmp/asterisk && \
     contrib/scripts/install_prereq install
-
-RUN apt-get remove -y liblua5.2-dev
-
-RUN apt-get install -y liblua5.1-dev
 
 RUN cd /tmp/asterisk && \
     ./configure
@@ -58,9 +54,9 @@ RUN cd /tmp/asterisk && \
 
 ## Lua
 
-ENV LUA_HASH 2e115fe26e435e33b0d5c022e4490567
-ENV LUA_MAJOR_VERSION 5.1
-ENV LUA_MINOR_VERSION 5
+ENV LUA_HASH 913fdb32207046b273fdb17aad70be13
+ENV LUA_MAJOR_VERSION 5.2
+ENV LUA_MINOR_VERSION 4
 ENV LUA_VERSION ${LUA_MAJOR_VERSION}.${LUA_MINOR_VERSION}
 
 RUN mkdir /tmp/lua && \
@@ -87,8 +83,8 @@ RUN mkdir /tmp/luamongo && \
     curl -sf -o /tmp/luamongo.tar.gz -L https://github.com/moai/luamongo/archive/v0.4.5.tar.gz && \
     tar -zxf /tmp/luamongo.tar.gz -C /tmp/luamongo --strip-components=1 && \
     cd /tmp/luamongo && \
-    make Linux LUAPKG=lua5.1 && \
-    cp /tmp/luamongo/mongo.so /usr/local/lib/lua/5.1/mongo.so
+    make Linux LUAPKG=lua5.2 && \
+    cp /tmp/luamongo/mongo.so /usr/local/lib/lua/5.2/mongo.so
 
 
 ## Install luarocks
