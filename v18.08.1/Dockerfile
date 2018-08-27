@@ -116,7 +116,7 @@ RUN luarocks install luasocket && \
     luarocks install busted && \
     luarocks install luacov && \
     luarocks install uuid && \
-    luarocks install moses && \
+    luarocks install moses 1.6.1 && \
     luarocks install luacrypto && \
     luarocks install httpclient && \
     luarocks install lualogging && \
