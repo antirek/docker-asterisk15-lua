@@ -4,7 +4,7 @@
 #
 # Contain
 #  - Asterisk 15.5.0
-#  - Lua 5.1
+#  - Lua 5.2
 #  - LuaRocks
 #  - mongodb driver & luamongo
 #  - g729
@@ -52,6 +52,7 @@ RUN cd /tmp/asterisk && \
     make && make install && \
     apt-get clean
 
+
 ## Lua
 
 ENV LUA_HASH 913fdb32207046b273fdb17aad70be13
@@ -78,7 +79,6 @@ RUN mkdir /tmp/mongo-cxx-driver && \
     cd /tmp/mongo-cxx-driver && \
     scons --prefix=/usr --full --use-system-boost install-mongoclient
 
-
 RUN mkdir /tmp/luamongo && \
     curl -sf -o /tmp/luamongo.tar.gz -L https://github.com/moai/luamongo/archive/v0.4.5.tar.gz && \
     tar -zxf /tmp/luamongo.tar.gz -C /tmp/luamongo --strip-components=1 && \
@@ -96,32 +96,27 @@ RUN mkdir /tmp/luarocks && \
     ./configure && \
     make bootstrap
 
-
-## Install luasec
-
-RUN git clone https://github.com/brunoos/luasec.git /tmp/luasec && \
-    cd /tmp/luasec && \
-    luarocks install luasec-0.7-1.rockspec
-
 ## Install rocks
 
-RUN luarocks install luasocket && \
-    luarocks install inspect && \
-    luarocks install redis-lua && \
-    luarocks install luafilesystem && \
-    luarocks install sendmail && \
-    luarocks install lzmq && \
-    luarocks install json-lua && \
-    luarocks install lua-cjson && \
-    luarocks install busted && \
-    luarocks install luacov && \
-    luarocks install uuid && \
+RUN luarocks install luasocket 3.0rc1 && \
+    luarocks install luasec 0.7 && \
+    luarocks install inspect 3.0 && \
+    luarocks install redis-lua 2.0.4 && \
+    luarocks install luafilesystem 1.7.0 && \
+    luarocks install sendmail 0.1.5 && \
+    luarocks install lzmq 0.4.4 && \
+    luarocks install json-lua 0.1 && \
+    luarocks install lua-cjson 2.1.0.6 && \
+    luarocks install busted 2.0.rc12 && \
+    luarocks install luacov 0.13.0 && \
+    luarocks install uuid 0.2 && \
     luarocks install moses 1.6.1 && \
-    luarocks install luacrypto && \
-    luarocks install httpclient && \
-    luarocks install lualogging && \
-    luarocks install luchia && \
-    luarocks install statsd
+    luarocks install luacrypto 0.3.2 && \
+    luarocks install httpclient 0.1.0 && \
+    luarocks install lualogging 1.3.0 && \
+    luarocks install luchia 1.1.2 && \
+    luarocks install statsd 3.0.2
+
 
 ## g729
 
