@@ -3,7 +3,7 @@
 ## What is it?
 
 - Asterisk 15 latest
-- Lua 5.1 for dialplan
+- Lua 5.2 for dialplan
 - most useful luarocks packages
 - dbs driver for lua
 - g729 support
@@ -24,6 +24,7 @@ also see https://github.com/antirek/docker-asterisk15-lua-pjsip-sample
 
 ## 18.08.1
 
+- up lua to 5.2
 - add luarocks luchia, statsd
 - up luarocks luasec to 0.7
 - up luarocks to 2.4.4
@@ -32,4 +33,3 @@ also see https://github.com/antirek/docker-asterisk15-lua-pjsip-sample
 
 - asterisk 15.5.0
 - enabled res_chan_stats, res_endpoint_stats
-
