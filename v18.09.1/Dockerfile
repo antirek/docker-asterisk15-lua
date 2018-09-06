@@ -1,9 +1,9 @@
 # Asterisk with Lua support
 #
-# VERSION 18.08.1
+# VERSION 18.09.1
 #
 # Contain
-#  - Asterisk 15.5.0
+#  - Asterisk 15.6.0
 #  - Lua 5.2
 #  - LuaRocks
 #  - mongodb driver & luamongo
@@ -31,26 +31,23 @@ RUN apt-get check && \
 
 RUN curl -sf \
         -o /tmp/asterisk.tar.gz \
-        -L http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-15.5.0.tar.gz && \
+        -L http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-15.6.0.tar.gz && \
     mkdir /tmp/asterisk && \
     tar -xzf /tmp/asterisk.tar.gz -C /tmp/asterisk --strip-components=1 && \
     cd /tmp/asterisk && \
     contrib/scripts/install_prereq install
 
 RUN cd /tmp/asterisk && \
-    ./configure 
-## --with-externals-cache 
-
-## --with-pjproject-bundled PJPROJECT_URL=http://developer.mobilon.ru/pjproject2
+    ./configure
 
 RUN cd /tmp/asterisk && \
     make menuselect.makeopts && \
     menuselect/menuselect \
         --disable BUILD_NATIVE \
-        --enable DONT_OPTIMIZE \
-        --enable COMPILE_DOUBLE \
-        --enable DEBUG_THREADS \
-        --enable BETTER_BACKTRACES \
+        --disable DONT_OPTIMIZE \
+        --disable COMPILE_DOUBLE \
+        --disable DEBUG_THREADS \
+        --disable BETTER_BACKTRACES \
         --enable res_endpoint_stats \
         --enable res_chan_stats \
         --enable res_pjsip_registrar_expire \

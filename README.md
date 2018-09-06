@@ -13,7 +13,7 @@
 use in Dockerfile
 
 `````
-FROM antirek/asterisk15-lua:18.08.1
+FROM antirek/asterisk15-lua:18.09.1
 
 ...
 
@@ -21,6 +21,10 @@ CMD asterisk && tail -f /var/log/asterisk/messages
 
 `````
 also see https://github.com/antirek/docker-asterisk15-lua-pjsip-sample
+
+## 18.09.1
+
+- up asterisk to 15.6.0
 
 ## 18.08.1
 
